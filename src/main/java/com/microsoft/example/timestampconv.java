@@ -35,41 +35,6 @@ public class timestampconv extends UDF {
                 System.out.println("NO MATCH");
             }
         }
-        if(input[1].toLowerCase().contains("y/m/d")){
-            String pattern = "(.*)/(.*)/(.*)";
-            Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(input[0]);
-            if (m.find( )) {
-                String year = m.group(1);
-                String month = m.group(2);
-                String date = m.group(3);
-                //Two digits are always prepended with 19 in sql timestamp
-                if(year.length()==2){
-                    year = "19"+year;
-                }
-                return_string = year+"-"+month+"-"+date+" 00:00:00";
-            } else {
-                System.out.println("NO MATCH");
-            }
-        }
-
-        if(input[1].toLowerCase().contains("y/m/d")){
-            String pattern = "(.*)/(.*)/(.*)";
-            Pattern r = Pattern.compile(pattern);
-            Matcher m = r.matcher(input[0]);
-            if (m.find( )) {
-                String year = m.group(1);
-                String month = m.group(2);
-                String date = m.group(3);
-                //Two digits are always prepended with 19 in sql timestamp
-                if(year.length()==2){
-                    year = "19"+year;
-                }
-                return_string = year+"-"+month+"-"+date+" 00:00:00";
-            } else {
-                System.out.println("NO MATCH");
-            }
-        }
 
         if(input[1].toLowerCase().contains("y/d/m")){
             String pattern = "(.*)/(.*)/(.*)";
