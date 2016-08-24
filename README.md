@@ -54,6 +54,6 @@ The following example assumes the following:
 
 * The hiveudf1 table contains a column named a1 that contains a timestamp value that needs to be converted to Hive timestamp format.
 
-    add jar wasb://example/jars/hiveudf-1.0-SNAPSHOT.jar;
+    add jar wasb:///example/jars/hiveudf-1.0-SNAPSHOT.jar;
     CREATE TEMPORARY  FUNCTION timeconv AS 'com.microsoft.example.timestampconv';
     select cast (timeconv(a1,"yyyy-mm-ddthh:mm:ss[.mmm]") as timestamp) from hiveudf1;
