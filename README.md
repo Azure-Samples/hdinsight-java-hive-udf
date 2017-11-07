@@ -52,8 +52,32 @@ The following example assumes the following:
 
 * The hiveudf-1.0-SNAPSHOT.jar has been stored into the /example/jars folder in the default storage account for the cluster.
 
-* The hiveudf1 table contains a column named a1 that contains a timestamp value that needs to be converted to Hive timestamp format.
+* You are familiar with using Hive on HDInsight.
 
-    add jar wasb:///example/jars/hiveudf-1.0-SNAPSHOT.jar;
-    CREATE TEMPORARY  FUNCTION timeconv AS 'com.microsoft.example.timestampconv';
-    select cast (timeconv(a1,"yyyy-mm-ddthh:mm:ss[.mmm]") as timestamp) from hiveudf1;
+1. To create a source table where datetime information is stored as a string, use the following HiveQL statements:
+
+    ```hiveql
+    CREATE TABLE dateasstring (id int, datetime string);
+    INSERT INTO dateasstring (id, datetime) values(1, "2017-11-07T01:35:00");
+    ```
+
+2. To create a new table where the `datetime` column is of type `timestamp`, use the following HiveQL:
+
+    ```hiveql
+    CREATE TABLE dateastimestamp (id int, datetime timestamp);
+    ```
+
+3. To register the `timestampconv` class as a function in Hive, use the following HiveQL statements:
+
+    ```hiveql
+    ADD JAR wasb:///example/jars/hiveudf-1.0-SNAPSHOT.jar';
+    CREATE TEMPORARY FUNCTION timeconv AS 'com.microsoft.example.timestampconv';
+    ```
+
+4. To load data from the `dateasstring` table into the `dateastimestamp` table, while converting the date to a `timestamp`, use the following HiveQL:
+
+    ```hiveql
+    INSERT INTO TABLE dateastimestamp SELECT id, cast(timeconv(datetime, "yyyy-mm-ddthh:mm:ss[.mmm]") AS timestamp) FROM dateasstring;
+    ```
+
+    This statement inserts data into `dateastimestamp`, and casts the `datetime` column as type `timestamp`. The `timeconv` function is used to convert the date from string to `timestamp`.
