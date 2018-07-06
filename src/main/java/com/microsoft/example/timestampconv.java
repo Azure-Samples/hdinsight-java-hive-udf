@@ -115,6 +115,17 @@ public class timestampconv extends UDF {
             }
         }
 
+		if(input[1].toLowerCase().contains("ddmmyyyy")){
+            String pattern = "(0[1-9]|[1-2][0-9]|31(?!(?:0[2469]|11))|30(?!02))(0[1-9]|1[0-2])([12]\\d{3})";
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(input[0]);
+            if (m.find( )) {
+                String date = m.group(1);
+                String month = m.group(2);
+                String year = m.group(3);
+                return_string = year+"-"+month+"-"+date+" 00:00:00";
+            }
+        }
         if(input[1].toLowerCase().contains("y-m-d")){
             String pattern = "(.*)-(.*)-(.*)";
             Pattern r = Pattern.compile(pattern);

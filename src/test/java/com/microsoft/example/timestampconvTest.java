@@ -24,6 +24,15 @@ public class timestampconvTest {
         text_array[0] = new String("19960229 12:40:30.123");
         text_array[1] = new String("YYYYMMDD[ hh:mm:ss[.mmm]]");
         Assert.assertEquals("1996-02-29 12:40:30.123", example.evaluate(text_array).toString());
+	}
+	
+	@Test
+    public void testUDF8() {
+        timestampconv example = new timestampconv();
+        String [] text_array= new String[2];
+        text_array[0] = new String("29021996");
+        text_array[1] = new String("DDMMYYYY");
+        Assert.assertEquals("1996-02-29 00:00:00", example.evaluate(text_array).toString());
     }
 
     @Test
