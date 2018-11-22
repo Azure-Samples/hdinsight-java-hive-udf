@@ -39,12 +39,11 @@
             <version>2.7.1</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-exec</artifactId>
-            <version>2.1.0</version>
-            <scope>provided</scope>
-        </dependency>
+         <dependency>
+           <groupId>org.apache.hive</groupId>
+           <artifactId>hive-exec</artifactId>
+           <version>[2.3.4,)</version>
+         </dependency>
         <!-- TEST DEPENDENCIES -->
         <dependency>
             <groupId>org.apache.commons</groupId>
