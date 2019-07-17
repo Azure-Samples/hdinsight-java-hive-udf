@@ -1,7 +1,11 @@
 ---
-services: hdinsight
-platforms: java
-author: rban1
+page_type: sample
+description: "A basic Java-based User Defined Function (UDF) for Hive."
+languages:
+- java
+products:
+- azure
+- azure-hdinsight
 ---
 
 # A UDF that converts various date/time formats to Hive timestamp format
